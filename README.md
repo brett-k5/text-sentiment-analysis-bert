@@ -37,6 +37,91 @@ Check out model performance and visualizations!
 🎯 Results
 Achieved a ROC AUC of 0.94 — which means the model is excellent at distinguishing sentiment classes! 🥳
 
+📦 Required File Uploads for Running Scripts in Google Colab
+If you run any of the .py scripts in Google Colab, there will be multiple uploads using files.upload() for each script. The files that must be uploaded for each upload are listed with the corresponding scripts they must be uploaded for below.
+
+First Import: Python scripts and utility modules.
+
+Second Import: Data files and model artifacts needed at runtime.
+
+🔹 log_reg_tuning.py
+First Import:
+
+log_reg_tuning.py
+
+Second Import:
+
+embedded_features.npz
+
+train_target.csv
+
+🔹 lightgbm_tuning.py
+First Import:
+
+lightgbm_tuning.py
+
+Second Import:
+
+embedded_features.npz
+
+train_target.csv
+
+🔹 catboost_tuning.py
+First Import:
+
+catboost_tuning.py
+
+Second Import:
+
+embedded_features.npz
+
+train_target.csv
+
+🔹 dummy_model_test.py
+First Import:
+
+dummy_model_test.py
+
+model_utils.py
+
+Second Import:
+
+embedded_features.npz
+
+train_target.csv
+
+test_target.csv
+
+model_log.pkl
+
+🔹 model_log_test.py
+First Import:
+
+model_log_test.py
+
+model_utils.py
+
+Second Import:
+
+embedded_features.npz
+
+train_target.csv
+
+test_target.csv
+
+🔹 model_log_cust_reviews_test.py
+First Import:
+
+model_log_cust_reviews_test.py
+
+Second Import:
+
+custom_reviews.csv
+
+embedded_custom_reviews.npz
+
+model_log.pkl
+
 🤝 Contact
 Feel free to reach out if you want to chat about the project or need help getting started!
 
