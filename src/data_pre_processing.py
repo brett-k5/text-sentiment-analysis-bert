@@ -15,11 +15,15 @@ def in_colab():
         return True
     except ImportError:
         return False
-    
-if in_colab():
-    from model_utils import BERT_text_to_embeddings
-else:
-    from src.model_utils import BERT_text_to_embeddings
+# We don't want to have to import model_utils every time we import variables from this script
+# So we are defining a function to import the BERT_text_to_embeddings function from model_utils.py.
+# We will call this function inside the if __name__ == '__main__': block at the bottom.
+def import_embedding_function():   
+    if in_colab():
+        from model_utils import BERT_text_to_embeddings
+    else:
+        from src.model_utils import BERT_text_to_embeddings
+    return BERT_text_to_embeddings
 
 
 # Data loading
@@ -44,12 +48,20 @@ df_reviews_test = df_reviews.query('ds_part == "test"').copy()
 train_target = df_reviews_train['pos']
 test_target = df_reviews_test['pos']
 
+def tok_conf_mod():
+    tokenizer = transformers.BertTokenizer.from_pretrained('bert-base-uncased')
+    config = transformers.BertConfig.from_pretrained('bert-base-uncased')
+    model = transformers.BertModel.from_pretrained('bert-base-uncased')
+    return tokenizer, config, model
 
-tokenizer = transformers.BertTokenizer.from_pretrained('bert-base-uncased')
-config = transformers.BertConfig.from_pretrained('bert-base-uncased')
-model = transformers.BertModel.from_pretrained('bert-base-uncased')
 
 if __name__ == '__main__':
+
+    # Assign values to tokenizer, config, and model variables
+    tokenizer, config, model = tok_conf_mod()
+
+    # Import BERT_text_to_embeddings by calling import_embedding_function
+    BERT_text_to_embeddings = import_embedding_function() 
 
     # Attention! Running BERT for thousands of texts may take long run on CPU, at least several hours
     train_features = BERT_text_to_embeddings(df_reviews_train['review_norm'], tokenizer, model, force_device='cuda')

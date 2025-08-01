@@ -7,7 +7,17 @@ from catboost import CatBoostClassifier
 from sklearn.model_selection import GridSearchCV
 
 # Local application imports
-from src.data_pre_processing import train_target
+def in_colab():
+    try:
+        import google.colab
+        return True
+    except ImportError:
+        return False
+
+if in_colab():
+    from data_pre_processing import train_target
+else:
+    from src.data_pre_processing import train_target
 
 
 model_cat = CatBoostClassifier(
@@ -20,12 +30,20 @@ model_cat = CatBoostClassifier(
     task_type='GPU'
 )
 
+
 param_grid = {
     'learning_rate': [0.05, 0.3],        # low and high learning rates
     'depth': [3, 8],                     # shallow vs. relatively deep trees
     'min_data_in_leaf': [5, 40],         # small leaf size vs. large leaf size
     'l2_leaf_reg': [1, 10],              # low and strong regularization
 }
+
+if in_colab():
+    from google.colab import files
+    print("Upload embedded_features.npz")
+    uploaded = files.upload()
+with np.load('embedded_features.npz') as data:
+    train_features = data['X_train']
 
 grid_search_cat = GridSearchCV(
     estimator=model_cat,
@@ -44,4 +62,8 @@ grid_search_cat.fit(train_features, train_target)
 print("Best hyperparameters:", grid_search_cat.best_params_)
 print(f"Best F1 score: {grid_search_cat.best_score_:.4f}")
 
-joblib.dump(grid_search_cat.best_estimator_, 'models/model_cat.pkl')
+if in_colab():
+    joblib.dump(grid_search_cat.best_estimator_, 'model_cat.pkl')
+    files.download('model_cat.pkl')
+else:
+    joblib.dump(grid_search_cat.best_estimator_, 'models/model_cat.pkl')

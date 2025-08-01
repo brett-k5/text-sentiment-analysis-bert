@@ -8,7 +8,17 @@ from lightgbm import LGBMClassifier
 from sklearn.model_selection import GridSearchCV
 
 # Local application imports
-from src.data_pre_processing import train_target
+def in_colab():
+    try:
+        import google.colab
+        return True
+    except ImportError:
+        return False
+
+if in_colab():
+    from data_pre_processing import train_target
+else:
+    from src.data_pre_processing import train_target
 
 # We need to make sure we have a version of LGBMClassifier that can run on GPUs
 print("LightGBM version:", lgb.__version__)
@@ -30,6 +40,12 @@ param_grid = {
     'max_depth': [5, 12],
 }
 
+if in_colab():
+    from google.colab import files
+    print("Upload embedded_features.npz")
+    uploaded = files.upload()
+with np.load('embedded_features.npz') as data:
+    train_features = data['X_train']
 
 grid_search_light = GridSearchCV(
     estimator=model_light,
@@ -49,4 +65,8 @@ grid_search_light.fit(train_features, train_target)
 print("Best hyperparameters:", grid_search_light.best_params_)
 print(f"Best F1 score: {grid_search_light.best_score_:.4f}")
 
-joblib.dump(grid_search_light.best_estimator_, 'models/model_light.pkl')
+if in_colab():
+    joblib.dump(grid_search_light.best_estimator_, 'model_light.pkl')
+    files.download('model_light.pkl')
+else:
+    joblib.dump(grid_search_light.best_estimator_, 'models/model_light.pkl')
