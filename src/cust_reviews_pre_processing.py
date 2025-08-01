@@ -15,11 +15,11 @@ def in_colab():
 if in_colab():
     from google.colab import files
     from model_utils import BERT_text_to_embeddings
-    from data_pre_processing import tokenizer, model 
+    from data_pre_processing import tok_conf_mod 
 
 else:
     from src.model_utils import BERT_text_to_embeddings  # Used to embed text
-    from src.data_pre_processing import tokenizer, model
+    from src.data_pre_processing import tok_conf_mod
 
 custom_reviews = pd.DataFrame([
     'I did not simply like it, not my kind of movie.',
@@ -40,12 +40,18 @@ custom_reviews['review_norm'] = (
     .str.strip()
 )
 
-embedded_custom_reviews = BERT_text_to_embeddings(custom_reviews['review_norm'], tokenizer, model, force_device='cuda')
+if __name__ == '__main__': 
+    tokenizer, config, model = tok_conf_mod()
 
-np.savez_compressed('embedded_custom_reviews.npz', cust_test=embedded_custom_reviews)
+    embedded_custom_reviews = BERT_text_to_embeddings(custom_reviews['review_norm'], 
+                                                      tokenizer, 
+                                                      model, 
+                                                      force_device='cuda')
 
-with np.load('embedded_custom_reviews.npz') as data:
-     embedded_custom_reviews = data['cust_test']
+    np.savez_compressed('embedded_custom_reviews.npz', cust_test=embedded_custom_reviews)
 
-if in_colab():
-    files.download('embedded_custom_reviews.npz')
+    with np.load('embedded_custom_reviews.npz') as data:
+        embedded_custom_reviews = data['cust_test']
+
+    if in_colab():
+        files.download('embedded_custom_reviews.npz')
