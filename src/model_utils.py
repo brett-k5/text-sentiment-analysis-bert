@@ -3,17 +3,15 @@
 import math
 
 # Third-party imports
+import joblib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torch
 import transformers
-from tqdm.auto import tqdm
-import matplotlib.pyplot as plt
 from sklearn import metrics
+from tqdm.auto import tqdm
 
-tokenizer = transformers.BertTokenizer.from_pretrained('bert-base-uncased')
-config = transformers.BertConfig.from_pretrained('bert-base-uncased')
-model = transformers.BertModel.from_pretrained('bert-base-uncased')
 
 # Define function to create text embeddings
 def BERT_text_to_embeddings(texts,
@@ -152,3 +150,14 @@ def evaluate_model(model, train_features, train_target, test_features, test_targ
     print(df_eval_stats)
 
     return
+
+def joblib_save(grid_search,
+            grid_search_path,
+            param_grid,
+            param_grid_path, 
+            estimator=None, 
+            estimator_path=None):
+    if estimator is not None and estimator_path is not None:
+        joblib.dump(estimator, estimator_path)
+    joblib.dump(grid_search, grid_search_path)
+    joblib.dump(param_grid, param_grid_path)
