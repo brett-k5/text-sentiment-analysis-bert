@@ -7,10 +7,10 @@ Used pretrained BERT models (via Hugging Face Transformers) to extract high-qual
 
 Trained gradient boosting classifiers (LightGBM and CatBoost), and a Logistic Regression model on the BERT features 
 
-Best model during cross validation was the Logistic Regression model:
-F1 score - 0.86
-Accuracy score - 0.86
-ROC AUC score = 0.94 
+Best model during cross validation was the Logistic Regression model:  
+F1 score - 0.86  
+Accuracy score - 0.86  
+ROC AUC score = 0.94   
 
 I also tested the Logistic Regression model on a small set of novel samples, and it peformed with accuracy score of 0.875
 
