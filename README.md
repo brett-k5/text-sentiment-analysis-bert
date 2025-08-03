@@ -1,9 +1,9 @@
-Text Sentiment Analysis with BERT
-  
-📋 Project Overview  
+# Text Sentiment Analysis with BERT
+
+### 📋 Project Overview  
 The Film Junky Union, a new edgy community for classic movie enthusiasts, is developing a system for filtering and categorizing movie reviews. The goal is to train a model to automatically detect negative reviews. We have a dataset of IMBD movie reviews with polarity labelling to build a model for classifying positive and negative reviews.
 
-🔥 Summary  
+### 🔥 Summary  
 Used pretrained BERT models (via Hugging Face Transformers) to extract high-quality text embeddings
 
 Trained gradient boosting classifiers (LightGBM and CatBoost), and a Logistic Regression model on the BERT features 
@@ -15,22 +15,34 @@ ROC AUC score = 0.94
 
 I also tested the Logistic Regression model on a small set of novel samples, and it peformed with accuracy score of 0.875
 
-🛠️ Tech Stack & Libraries
-- Python 
+### 🛠️ Tech Stack & Libraries
 
-- Transformers (Hugging Face) for BERT     
-embeddings 
+**Python 3.10+**
 
-- LightGBM & CatBoost for gradient boosting 
+Machine Learning & Modeling:  
+- `scikit-learn` – Logistic regression, evaluation metrics, grid search, and baseline models  
+- `LightGBM` – Efficient gradient boosting for large datasets  
+- `CatBoost` – Gradient boosting with native support for categorical features  
+- `joblib` – Model persistence and parallel computation
 
-- scikit-learn for logistic regression and evaluation
+Natural Language Processing:  
+- `transformers` (by Hugging Face) – Loading and using BERT models, tokenizers, and configs  
+- `torch` (PyTorch) – Backend tensor computations and model support
 
-- PyTorch for model backend 
+Data Manipulation & Analysis:  
+- `pandas` – DataFrames, querying, and string operations  
+- `numpy` – Efficient numerical computation and file I/O (e.g., `np.savez_compressed`, `np.load`)  
+- `math` – Standard library math utilities
 
-- Pandas, NumPy, Matplotlib, Seaborn for data wrangling & visualization
+Visualization:  
+- `matplotlib` – Plotting model results and exploratory visuals
+
+Utilities:  
+- `tqdm` – Progress bars for training and data processing loops  
+- `json` – Configuration and results serialization (standard library)
 
 
-🚀 How to Run  
+### 🚀 How to Run  
 Clone this repo and install requirements:
 pip install -r requirements.txt
 
@@ -49,16 +61,16 @@ model_cat_cv_tuning.py
 model_light_cv_tuning.py
 cust_reviews_pre_processing.py
 
-📊 Results  
+### 📊 Results  
 Results are documented in the results_and_analysis.ipynb notebook which should be run from the project directory. 
 
-🤝 Datasets   
+### 🤝 Datasets   
 The only data you need to start is imdb_reviews.tsv. However, you will create an embedded_features.npz file and an embedded_custom_reviews.npz with the pre_processing .py scripts. If you run the pre_processing .py scripts from colab they will be downloaded to your computer and you must manually move them to the project directory. If you run those scripts from the project directory, they will simply be saved there. 
 
-🤝 Contact  
+### 🤝 Contact  
 Feel free to reach out if you want to chat about the project or need help getting started!
 
-🗂️ Project Structure  
+### 🗂️ Project Structure  
 All files live in the main directory for easy access:
 ```
 text_sentiment_analysis_bert/
