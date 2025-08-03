@@ -2,7 +2,7 @@ Text Sentiment Analysis with BERT
 📋 Project Overview
 The Film Junky Union, a new edgy community for classic movie enthusiasts, is developing a system for filtering and categorizing movie reviews. The goal is to train a model to automatically detect negative reviews. We have a dataset of IMBD movie reviews with polarity labelling to build a model for classifying positive and negative reviews.
 
-🔥 Summary
+🔥 Summary  
 Used pretrained BERT models (via Hugging Face Transformers) to extract high-quality text embeddings
 
 Trained gradient boosting classifiers (LightGBM and CatBoost), and a Logistic Regression model on the BERT features 
@@ -29,7 +29,7 @@ embeddings
 - Pandas, NumPy, Matplotlib, Seaborn for data wrangling & visualization
 
 
-🚀 How to Run
+🚀 How to Run  
 Clone this repo and install requirements:
 pip install -r requirements.txt
 
@@ -48,16 +48,16 @@ model_cat_cv_tuning.py
 model_light_cv_tuning.py
 cust_reviews_pre_processing.py
 
-📊 Results
+📊 Results  
 Results are documented in the results_and_analysis.ipynb notebook which should be run from the project directory. 
 
-🤝 Datasets 
+🤝 Datasets   
 The only data you need to start is imdb_reviews.tsv. However, you will create an embedded_features.npz file and an embedded_custom_reviews.npz with the pre_processing .py scripts. If you run the pre_processing .py scripts from colab they will be downloaded to your computer and you must manually move them to the project directory. If you run those scripts from the project directory, they will simply be saved there. 
 
-🤝 Contact
+🤝 Contact  
 Feel free to reach out if you want to chat about the project or need help getting started!
 
-🗂️ Project Structure
+🗂️ Project Structure  
 All files live in the main directory for easy access:
 ```
 text_sentiment_analysis_bert/
