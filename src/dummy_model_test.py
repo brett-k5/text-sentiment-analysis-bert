@@ -1,8 +1,3 @@
-# Standard library imports
-try:
-    from google.colab import files
-except ImportError:
-    pass  # Not running in Colab
 
 # Third-party imports
 import numpy as np
