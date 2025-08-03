@@ -1,5 +1,5 @@
-Text Sentiment Analysis with BERT 
-📋 Project Overview
+Text Sentiment Analysis with BERT  
+📋 Project Overview  
 The Film Junky Union, a new edgy community for classic movie enthusiasts, is developing a system for filtering and categorizing movie reviews. The goal is to train a model to automatically detect negative reviews. We have a dataset of IMBD movie reviews with polarity labelling to build a model for classifying positive and negative reviews.
 
 🔥 Summary  
