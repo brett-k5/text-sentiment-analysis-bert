@@ -52,7 +52,7 @@ After training and hyperparameter tuning each of the models you can test the bes
 
 Next you will have to run cust_reviews_pre_processing.py. It would be preferable to run that script on a platform with GPU availability. After that, you can run cust_reviews_test.py from the project directory. 
 
-All .py scripts run from the project directory should be run by entering python -m src.*.py into your IDE terminal from the project directory.
+All .py scripts which are not in the src folder are the scripts that execute the code and should be run from the project directory where they are located. 
 
 Each script that requires GPU to run in a timely fashion was written to be compatible with running on google colab. I provided a notebook script with comment instructions for each.py script to make this process smoother. You can simply upload the notebook script to google colab, and upload the files as instructed in that notebook's comments. I ran these scripts on L4 GPU, but T4 would likely suffice. The scripts that need to be (or would benefit from) running with GPU are:
 
@@ -75,39 +75,41 @@ All files live in the main directory for easy access:
 ```
 text_sentiment_analysis_bert/
 │
-├── cv_tuning_results/ # Grid search result objects
-│ ├── grid_search_cat.pkl
-│ ├── grid_search_light.pkl
-│ └── grid_search_log.pkl
+├── cv_tuning_results/              # Grid search result objects
+│   ├── grid_search_cat.pkl
+│   ├── grid_search_light.pkl
+│   └── grid_search_log.pkl
 │
-├── models/ # Serialized trained models
-│ ├── model_cat.json
-│ ├── model_light.pkl
-│ └── model_log.pkl
+├── models/                         # Serialized trained models
+│   ├── model_cat.json
+│   ├── model_light.pkl
+│   └── model_log.pkl
 │
-├── notebooks/ # Jupyter notebooks for exploration & training
-│ ├── cust_reviews_pre_processing_colab.ipynb
-│ ├── data_pre_processing_colab.ipynb
-│ ├── model_cat_cv_tuning_colab.ipynb
-│ ├── model_light_cv_tuning_colab.ipynb
-│ └── restults_and_analysis.ipynb
+├── notebooks/                      # Jupyter notebooks for exploration & training
+│   ├── cust_reviews_pre_processing_colab.ipynb
+│   ├── data_pre_processing_colab.ipynb
+│   ├── model_cat_cv_tuning_colab.ipynb
+│   ├── model_light_cv_tuning_colab.ipynb
+│   └── results_and_analysis.ipynb
 │
-├── param_grids/ # Hyperparameter search grids
-│ ├── param_grid_cat.pkl
-│ ├── param_grid_light.pkl
-│ └── param_grid_log.pkl
+├── param_grids/                    # Hyperparameter search grids
+│   ├── param_grid_cat.pkl
+│   ├── param_grid_light.pkl
+│   └── param_grid_log.pkl
 │
-├── src/ # Source code modules
-│ ├── cust_reviews_pre_processing.py
-│ ├── cust_reviews_test.py
-│ ├── data_pre_processing.py
-│ ├── dummy_model_test.py
-│ ├── model_cat_cv_tuning.py
-│ ├── model_light_cv_tuning.py
-│ ├── model_log_cv_tuning.py
-│ ├── model_log_test.py
-│ └── model_utils.py
+├── src/                            # Reusable code modules only
+│   ├── cust_reviews_pre_processing.py
+│   ├── data_pre_processing.py
+│   └── model_utils.py
 │
-├── imdb_reviews.tsv # Raw dataset
-├── README.md # Project documentation
-└── requirements.txt # Python package dependencies
+├── model_cat_cv_tuning.py         # CV tuning scripts (moved from src/)
+├── model_light_cv_tuning.py
+├── model_log_cv_tuning.py
+│
+├── cust_reviews_test.py           # Test scripts (moved from src/)
+├── dummy_model_test.py
+├── model_log_test.py
+│
+├── imdb_reviews.tsv               # Raw dataset
+├── README.md                      # Project documentation
+└── requirements.txt               # Python package dependencies
