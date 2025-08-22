@@ -52,7 +52,7 @@ After training and hyperparameter tuning each of the models you can test the bes
 
 Next you will have to run cust_reviews_pre_processing.py. It would be preferable to run that script on a platform with GPU availability. After that, you can run cust_reviews_test.py from the project directory. 
 
-All .py scripts which are not in the src folder are the scripts that execute the code and should be run from the project directory where they are located. 
+All .py scripts which are not in the src folder are the scripts that execute the code (with the exception of the pre_processing scripts that have to be run with GPU support) and should be run from the project directory where they are located. 
 
 Each script that requires GPU to run in a timely fashion was written to be compatible with running on google colab. I provided a notebook script with comment instructions for each.py script to make this process smoother. You can simply upload the notebook script to google colab, and upload the files as instructed in that notebook's comments. I ran these scripts on L4 GPU, but T4 would likely suffice. The scripts that need to be (or would benefit from) running with GPU are:
 
