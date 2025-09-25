@@ -65,9 +65,6 @@ if __name__ == '__main__':
     # Assign values to tokenizer, config, and model variables
     tokenizer, config, model = tok_conf_mod()
 
-    # Import BERT_text_to_embeddings by calling import_embedding_function
-    BERT_text_to_embeddings = import_embedding_function() 
-
     # Attention! Running BERT for thousands of texts may take long run on CPU, at least several hours
     train_features = BERT_text_to_embeddings(df_reviews_train['review_norm'], tokenizer, model, force_device='cuda') # train
     test_features = BERT_text_to_embeddings(df_reviews_test['review_norm'], tokenizer, model, force_device='cuda') # test

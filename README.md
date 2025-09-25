@@ -46,6 +46,19 @@ Utilities:
 Clone this repo and install requirements:
 pip install -r requirements.txt
 
+⚙️ Running Notebooks  
+To run the Jupyter notebooks in this project, ensure you have the required packages installed. Conda is recommended, especially on Windows, but any Python virtual environment will work.
+
+### Create and activate your environment:
+
+**Using Conda (recommended on Windows):**
+
+```bash
+conda create --name project_name_env python=3.11
+conda activate project_name_env
+
+
+
 You will have to run the data_pre_processing.py and script on a platform with GPU capacity first, as this creates the BERT text embeddings each of the models requie to train on. After that you can run the *_tuning_cv.py scripts for each model. Order does not matter for this part. The resulting models will be refit on the full training set and saved to the models subdirectory with the selected hyperparameter values set (assuming you are running them from the project directory. If you are running the *_cv_tuning.py scripts on google colab you will have to manually move them from your downloads to the models subdirectory.)
 
 After training and hyperparameter tuning each of the models you can test the best model (model_log) by running model_log_test.py and compare it to a dummy model by running dummy_model_test.py. 
